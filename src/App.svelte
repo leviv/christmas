@@ -47,8 +47,6 @@
     return today.getTime() - thanksgiving.getTime();
   };
 
-  console.log(millisecondsSinceThanksgiving());
-
   const dayMilliseconds = 1000 * 60 * 60 * 24;
   const hourMilliseconds = 1000 * 60 * 60;
   const minuteMilliseconds = 1000 * 60;
@@ -86,7 +84,6 @@
       const vol =
         millisecondsSinceThanksgiving() /
         (millisecondsSinceThanksgiving() + millisecondsUntilChristmas());
-      console.log(vol);
       audio.volume = vol;
     }
   };
