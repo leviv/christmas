@@ -92,19 +92,29 @@
   updateTimes();
   setInterval(() => updateTimes(), 1_000);
 
-  const getSeasonsGreetings = () => {
-    let seasonsGreetings = "Merry Christmas";
-    for (let i = 0; i < daysUntilChristmas + 1; i++) {
-      seasonsGreetings += " eve";
-    }
-    seasonsGreetings += "!!!";
-
-    return seasonsGreetings;
+  let coordinates = { x: 0, y: 0 };
+  const handleMousemove = (e) => {
+    coordinates.x = e.clientX;
+    coordinates.y = e.clientY;
+    console.log(coordinates);
   };
 </script>
 
+<svelte:body on:mousemove={handleMousemove} />
+
 <main>
-  <h1>{getSeasonsGreetings()}</h1>
+  <div>
+    <h1>
+      Merry Christmas
+      {#each { length: daysUntilChristmas + 1 } as _, i}
+        {#if i === daysUntilChristmas}
+          <span class="eve">eve!!!</span>
+        {:else}
+          <span class="eve">eve</span>
+        {/if}
+      {/each}
+    </h1>
+  </div>
   <h2>
     {daysUntilChristmas} days {hoursUntilChristmas} hours {minutesUntilChristmas}
     minutes and {secondsUntilChristmas} seconds until christmas!
@@ -122,15 +132,25 @@
 </main>
 
 <style>
+  :global(body) {
+    margin: 0;
+    padding: 0;
+  }
+
   main {
     text-align: center;
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
   }
+
   .album {
     animation: spin 60s linear infinite;
     transform: rotate(0deg) scale(0.4);
+  }
+
+  .eve {
+    position: absolute;
   }
 
   @keyframes spin {
