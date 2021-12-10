@@ -214,11 +214,12 @@
             style="bottom:{(mouseDistance.y / daysUntilChristmas) *
               (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) *
               (i + 1)}px"
+            bind:this={eve}
           >
-            {#if i === daysUntilChristmas}
+            {#if i === daysUntilChristmas - 1}
               eve!!!
             {:else}
-              <span bind:this={eve}>eve</span>
+              eve
             {/if}
           </span>
         {/each}
@@ -337,6 +338,7 @@
       color: #fff;
       font-weight: 700;
       position: absolute;
+      user-select: none;
     }
   }
 
