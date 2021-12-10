@@ -292,6 +292,7 @@
   .volume {
     background-image: url(../assets/border2.svg);
     cursor: pointer;
+    margin-top: 35px;
 
     &:before {
       background-image: url(../assets/border_transparent2.svg);
@@ -313,11 +314,11 @@
 
     .eve:nth-child(odd) {
       color: var(--main-bg-color);
-      -webkit-text-stroke: 2px #000;
+      -webkit-text-stroke: 1.5px #000;
     }
 
     .eve:nth-child(even) {
-      -webkit-text-stroke: 2px var(--secondary-color);
+      -webkit-text-stroke: 1.5px var(--secondary-color);
     }
 
     .eve {
