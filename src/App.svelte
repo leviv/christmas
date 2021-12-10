@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
 
   let seasonsGreetings;
+  let eve;
   let audio;
   onMount(() => {
     // when the audio binding is ready set the volume
@@ -99,8 +100,13 @@
 
   let mouseDistance = { x: 0, y: 0 };
   const handleMousemove = (e) => {
-    mouseDistance.x = e.clientX - seasonsGreetings.offsetLeft;
-    mouseDistance.y = seasonsGreetings.offsetTop - e.clientY;
+    mouseDistance.x =
+      e.clientX -
+      seasonsGreetings.offsetLeft -
+      seasonsGreetings.offsetWidth +
+      eve.offsetWidth / 2;
+    mouseDistance.y =
+      seasonsGreetings.offsetTop - e.clientY - eve.offsetHeight / 2;
   };
 
   //draw background snowflakes
@@ -201,21 +207,27 @@
   <div>
     <h1 class="text-box seasons-greetings" bind:this={seasonsGreetings}>
       merry christmas
-      {#each { length: Math.min(daysUntilChristmas + 1, 50) } as _, i}
-        <span
-          class="eve"
-          style="bottom:{(mouseDistance.y / daysUntilChristmas) *
-            (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) *
-            (i + 1)}px"
-        >
-          {#if i === daysUntilChristmas}
-            eve!!!
-          {:else}
-            eve
-          {/if}
-        </span>
-      {/each}
-      <span>eve</span>
+      <span style="position: relative; width: 0; height: 0">
+        {#each { length: Math.min(daysUntilChristmas, 50) } as _, i}
+          <span
+            class="eve"
+            style="bottom:{(mouseDistance.y / daysUntilChristmas) *
+              (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) *
+              (i + 1)}px"
+          >
+            {#if i === daysUntilChristmas}
+              eve!!!
+            {:else}
+              <span bind:this={eve}>eve</span>
+            {/if}
+          </span>
+        {/each}
+      </span>
+      <span>
+        {#if daysUntilChristmas > 0}
+          eve
+        {/if}
+      </span>
     </h1>
   </div>
 </main>
