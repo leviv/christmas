@@ -6,6 +6,7 @@
   onMount(() => {
     // when the audio binding is ready set the volume
     audio.volume = 0;
+    console.log(audio.play);
   });
 
   /**
@@ -100,16 +101,12 @@
   const handleMousemove = (e) => {
     mouseDistance.x = e.clientX - seasonsGreetings.offsetLeft;
     mouseDistance.y = seasonsGreetings.offsetTop - e.clientY;
-
-    console.log(mouseDistance);
   };
 
   //draw background snowflakes
   window.onload = function () {
     drawSnowflakes();
   };
-
-  window.addEventListener("resize", drawSnowflakes);
 
   function drawSnowflakes() {
     let background = document.getElementsByClassName("background")[0];
@@ -170,21 +167,34 @@
 <main>
   <div class="background" />
   <h2 class="time-left text-box">
-    <span>{daysUntilChristmas}</span> days <span>{hoursUntilChristmas}</span>
-    hours <span>{minutesUntilChristmas}</span>
-    minutes and <span>{secondsUntilChristmas}</span> seconds until christmas!!
+    <span>{daysUntilChristmas}</span> day{daysUntilChristmas !== 1 ? "s" : ""}
+    <span>{hoursUntilChristmas}</span>
+    hour{hoursUntilChristmas !== 1 ? "s" : ""}
+    <span>{minutesUntilChristmas}</span>
+    minute{minutesUntilChristmas !== 1 ? "s" : ""} and
+    <span>{secondsUntilChristmas}</span>
+    second{secondsUntilChristmas !== 1 ? "s" : ""} until christmas!!
   </h2>
-  <h2 class="volume text-box">
-    volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
-  </h2>
-  <audio autoplay loop bind:this={audio} controls>
+
+  <button
+    class="volume text-box"
+    on:click={() => (audio.paused ? audio.play() : audio.pause())}
+  >
+    {#if !audio || audio.paused}
+      <span>play music</span>
+    {:else}
+      volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
+    {/if}
+  </button>
+  <audio bind:this={audio} autoplay>
     <source src={"./song.mp3"} type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
   <img
-    src="./assets/album_cover.jpg"
+    src="./assets/album_cover.png"
     alt="Mariah Carey merry Christmas II you album cover"
+    style="opacity: {audioVolume};"
     class="album"
   />
 
@@ -243,9 +253,12 @@
   }
 
   .text-box {
+    background-color: transparent;
     background-size: 100% 100%;
     font-size: 1.2em;
     padding: 14px 30px;
+    border: none;
+    display: block;
     position: relative;
     width: -moz-fit-content;
     width: fit-content;
@@ -278,6 +291,7 @@
 
   .volume {
     background-image: url(../assets/border2.svg);
+    cursor: pointer;
 
     &:before {
       background-image: url(../assets/border_transparent2.svg);
@@ -314,14 +328,10 @@
   }
 
   .album {
-    animation: spin 60s linear infinite;
-    transform: rotate(0deg) scale(0.4);
-  }
-
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
+    position: absolute;
+    transform: rotate(-20deg) scale(1.15);
+    bottom: 0%;
+    right: 0%;
   }
 
   h1 {
