@@ -101,6 +101,57 @@
     coordinates.y = e.clientY;
     console.log(coordinates);
   };
+
+  //draw background snowflakes
+  window.onload = function () {
+    drawSnowflakes();
+  };
+
+  window.addEventListener("resize", drawSnowflakes);
+
+  function drawSnowflakes() {
+    let background = document.getElementsByClassName("background")[0];
+    let rows = [];
+
+    for (let i = 0; i <= window.innerHeight / 50; i++) {
+      let row = document.createElement("div");
+      row.style.width = "200vw";
+      row.style.zIndex = "-100";
+      if (i % 2 == 0) {
+        row.style.transform = "translateX(-30px)";
+      }
+      rows.push(row);
+    }
+
+    for (let i = 0; i < rows.length; i++) {
+      if (i % 2 == 0) {
+        for (let j = 0; j <= window.innerWidth / 50; j++) {
+          let img = document.createElement("img");
+          img.style.padding = "20px";
+          img.style.height = "30px";
+          img.style.transform =
+            "rotate(" + Math.floor(Math.random() * 360) + "deg)";
+          img.src = "https://i.imgur.com/ftJAqny.png";
+          rows[i].append(img);
+        }
+      } else {
+        for (let k = 0; k <= window.innerWidth / 50; k++) {
+          let img = document.createElement("img");
+          img.classList.add("snowflake");
+          img.classList.add("snowflake-2");
+          img.style.padding = "20px";
+          img.style.width = "30px";
+          img.style.height = "30px";
+
+          img.style.transform =
+            "rotate(" + Math.floor(Math.random() * 360) + "deg)";
+          img.src = "https://i.imgur.com/ftJAqny.png";
+          rows[i].append(img);
+        }
+      }
+      background.append(rows[i]);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -115,6 +166,7 @@
 <svelte:body on:mousemove={handleMousemove} />
 
 <main>
+  <div class="background" />
   <h2 class="time-left text-box">
     <span>{daysUntilChristmas}</span> days <span>{hoursUntilChristmas}</span>
     hours <span>{minutesUntilChristmas}</span>
@@ -159,6 +211,7 @@
 
   main {
     background-color: var(--main-bg-color);
+    overflow: hidden;
     font-family: "Fuzzy Bubbles", cursive;
     font-weight: 400;
     padding: 60px;
@@ -167,6 +220,27 @@
     position: relative;
     height: calc(100vh - 120px);
     z-index: 1;
+  }
+
+  .background {
+    position: absolute;
+    transform: translateX(-30px);
+    left: 0px;
+    top: 0px;
+    width: 200vw;
+    height: 200vh;
+  }
+
+  .snowflake {
+    width: 30px;
+  }
+
+  .row {
+    width: 200vw;
+  }
+
+  .row-2 {
+    margin-left: 30px;
   }
 
   .text-box {
