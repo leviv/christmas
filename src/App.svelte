@@ -231,22 +231,10 @@
     height: 200vh;
   }
 
-  .snowflake {
-    width: 30px;
-  }
-
-  .row {
-    width: 200vw;
-  }
-
-  .row-2 {
-    margin-left: 30px;
-  }
-
   .text-box {
     background-size: 100% 100%;
-    font-size: 28px;
-    padding: 8px 22px;
+    font-size: 1.2em;
+    padding: 14px 30px;
     position: relative;
     width: -moz-fit-content;
     width: fit-content;
@@ -305,6 +293,10 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
+  }
+
+  h2 {
+    font-weight: 400;
   }
 
   @media (min-width: 640px) {
