@@ -47,6 +47,9 @@
     return today.getTime() - thanksgiving.getTime();
   };
 
+  let audioVolume =
+    millisecondsSinceThanksgiving() /
+    (millisecondsSinceThanksgiving() + millisecondsUntilChristmas());
   const dayMilliseconds = 1000 * 60 * 60 * 24;
   const hourMilliseconds = 1000 * 60 * 60;
   const minuteMilliseconds = 1000 * 60;
@@ -81,10 +84,10 @@
     );
 
     if (audio) {
-      const vol =
+      audioVolume =
         millisecondsSinceThanksgiving() /
         (millisecondsSinceThanksgiving() + millisecondsUntilChristmas());
-      audio.volume = vol;
+      audio.volume = audioVolume;
     }
   };
 
@@ -100,9 +103,26 @@
   };
 </script>
 
+<svelte:head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+</svelte:head>
+
 <svelte:body on:mousemove={handleMousemove} />
 
 <main>
+  <h2 class="time-left text-box">
+    <span>{daysUntilChristmas}</span> days <span>{hoursUntilChristmas}</span>
+    hours <span>{minutesUntilChristmas}</span>
+    minutes and <span>{secondsUntilChristmas}</span> seconds until christmas!
+  </h2>
+  <h2 class="volume text-box">
+    volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
+  </h2>
   <div>
     <h1>
       Merry Christmas
@@ -115,11 +135,7 @@
       {/each}
     </h1>
   </div>
-  <h2>
-    {daysUntilChristmas} days {hoursUntilChristmas} hours {minutesUntilChristmas}
-    minutes and {secondsUntilChristmas} seconds until christmas!
-  </h2>
-  <audio autoplay loop bind:this={audio}>
+  <audio autoplay loop bind:this={audio} controls>
     <source src={"./song.mp3"} type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
@@ -131,17 +147,68 @@
   />
 </main>
 
-<style>
+<style lang="scss">
   :global(body) {
+    /* Variables */
+    --main-bg-color: #c0f3c5;
+    --secondary-color: #ff6c7e;
+
     margin: 0;
     padding: 0;
   }
 
   main {
-    text-align: center;
-    padding: 1em;
+    background-color: var(--main-bg-color);
+    font-family: "Fuzzy Bubbles", cursive;
+    font-weight: 400;
+    padding: 60px;
     max-width: 240px;
     margin: 0 auto;
+    position: relative;
+    height: calc(100vh - 120px);
+    z-index: 1;
+  }
+
+  .text-box {
+    background-size: 100% 100%;
+    font-size: 28px;
+    padding: 8px 22px;
+    position: relative;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    &:before {
+      background-size: 100% 100%;
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+
+    span {
+      color: var(--secondary-color);
+      font-weight: 800;
+    }
+  }
+
+  .time-left {
+    background-image: url(../border1.svg);
+
+    &:before {
+      background-image: url(../border_transparent1.svg);
+    }
+  }
+
+  .volume {
+    background-image: url(../border2.svg);
+
+    &:before {
+      background-image: url(../border_transparent2.svg);
+    }
   }
 
   .album {
