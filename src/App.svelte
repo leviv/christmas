@@ -118,7 +118,7 @@
   <h2 class="time-left text-box">
     <span>{daysUntilChristmas}</span> days <span>{hoursUntilChristmas}</span>
     hours <span>{minutesUntilChristmas}</span>
-    minutes and <span>{secondsUntilChristmas}</span> seconds until christmas!
+    minutes and <span>{secondsUntilChristmas}</span> seconds until christmas!!
   </h2>
   <h2 class="volume text-box">
     volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
