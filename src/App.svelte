@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
+  let seasonsGreetings;
   let audio;
   onMount(() => {
     // when the audio binding is ready set the volume
@@ -95,11 +96,12 @@
   updateTimes();
   setInterval(() => updateTimes(), 1_000);
 
-  let coordinates = { x: 0, y: 0 };
+  let mouseDistance = { x: 0, y: 0 };
   const handleMousemove = (e) => {
-    coordinates.x = e.clientX;
-    coordinates.y = e.clientY;
-    console.log(coordinates);
+    mouseDistance.x = e.clientX - seasonsGreetings.offsetLeft;
+    mouseDistance.y = seasonsGreetings.offsetTop - e.clientY;
+
+    console.log(mouseDistance);
   };
 
   //draw background snowflakes
@@ -175,28 +177,37 @@
   <h2 class="volume text-box">
     volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
   </h2>
-  <div>
-    <h1>
-      Merry Christmas
-      {#each { length: daysUntilChristmas + 1 } as _, i}
-        {#if i === daysUntilChristmas}
-          <span class="eve">eve!!!</span>
-        {:else}
-          <span class="eve">eve</span>
-        {/if}
-      {/each}
-    </h1>
-  </div>
   <audio autoplay loop bind:this={audio} controls>
     <source src={"./song.mp3"} type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
   <img
-    src="./album_cover.jpg"
+    src="./assets/album_cover.jpg"
     alt="Mariah Carey merry Christmas II you album cover"
     class="album"
   />
+
+  <div>
+    <h1 class="text-box seasons-greetings" bind:this={seasonsGreetings}>
+      merry christmas
+      {#each { length: Math.min(daysUntilChristmas + 1, 50) } as _, i}
+        <span
+          class="eve"
+          style="bottom:{(mouseDistance.y / daysUntilChristmas) *
+            (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) *
+            (i + 1)}px"
+        >
+          {#if i === daysUntilChristmas}
+            eve!!!
+          {:else}
+            eve
+          {/if}
+        </span>
+      {/each}
+      <span>eve</span>
+    </h1>
+  </div>
 </main>
 
 <style lang="scss">
@@ -258,28 +269,53 @@
   }
 
   .time-left {
-    background-image: url(../border1.svg);
+    background-image: url(../assets/border1.svg);
 
     &:before {
-      background-image: url(../border_transparent1.svg);
+      background-image: url(../assets/border_transparent1.svg);
     }
   }
 
   .volume {
-    background-image: url(../border2.svg);
+    background-image: url(../assets/border2.svg);
 
     &:before {
-      background-image: url(../border_transparent2.svg);
+      background-image: url(../assets/border_transparent2.svg);
+    }
+  }
+
+  .seasons-greetings {
+    background-image: url(../assets/border3.svg);
+    position: absolute;
+    bottom: 60px;
+
+    &:before {
+      background-image: url(../assets/border_transparent3.svg);
+    }
+
+    /* .eve:first-child {
+      position: relative !important;
+    } */
+
+    .eve:nth-child(odd) {
+      color: var(--main-bg-color);
+      -webkit-text-stroke: 2px #000;
+    }
+
+    .eve:nth-child(even) {
+      -webkit-text-stroke: 2px var(--secondary-color);
+    }
+
+    .eve {
+      color: #fff;
+      font-weight: 700;
+      position: absolute;
     }
   }
 
   .album {
     animation: spin 60s linear infinite;
     transform: rotate(0deg) scale(0.4);
-  }
-
-  .eve {
-    position: absolute;
   }
 
   @keyframes spin {
