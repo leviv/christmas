@@ -192,7 +192,7 @@
       volume: <span>{Math.round(audioVolume * 10000) / 100}%</span>
     {/if}
   </button>
-  <audio bind:this={audio} autoplay>
+  <audio bind:this={audio} autoplay loop>
     <source src={"./song.mp3"} type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
