@@ -54,6 +54,7 @@
   let audioVolume =
     millisecondsSinceThanksgiving() /
     (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
+  const title = document.title;
 
   /**
    * Get the number of days, hours, and seconds until xmas
@@ -66,6 +67,7 @@
         (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
       audio.volume = audioVolume;
     }
+    document.title = `${Math.round(audioVolume * 10000) / 100}% - ${title}`;
   };
 
   // Update every second
