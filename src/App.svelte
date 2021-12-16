@@ -118,7 +118,7 @@
 
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
-          img.src = "../assets/snowflake.svg";
+          img.src = "./assets/snowflake.svg";
           rows[i].append(img);
         }
       }
