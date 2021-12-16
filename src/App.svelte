@@ -102,8 +102,7 @@
         for (let j = 0; j <= window.innerWidth / 50; j++) {
           let img = document.createElement("img");
           img.style.padding = "20px";
-          img.style.position = "relative";
-          img.style.zIndex = "-100";
+          img.style.width = "30px";
           img.style.height = "30px";
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
@@ -113,13 +112,9 @@
       } else {
         for (let k = 0; k <= window.innerWidth / 50; k++) {
           let img = document.createElement("img");
-          img.classList.add("snowflake");
-          img.classList.add("snowflake-2");
           img.style.padding = "20px";
           img.style.width = "30px";
           img.style.height = "30px";
-          img.style.position = "relative";
-          img.style.zIndex = "-100";
 
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";

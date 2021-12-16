@@ -1164,7 +1164,7 @@ var app = (function () {
     const { document: document_1 } = globals;
     const file = "src/App.svelte";
 
-    // (153:4) {:else}
+    // (148:4) {:else}
     function create_else_block(ctx) {
     	let t0;
     	let span;
@@ -1178,7 +1178,7 @@ var app = (function () {
     			span = element("span");
     			t1 = text(t1_value);
     			t2 = text("%");
-    			add_location(span, file, 153, 14, 4442);
+    			add_location(span, file, 148, 14, 4232);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1199,14 +1199,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(153:4) {:else}",
+    		source: "(148:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (151:4) {#if !audio || audio.paused}
+    // (146:4) {#if !audio || audio.paused}
     function create_if_block(ctx) {
     	let span;
 
@@ -1214,7 +1214,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			span.textContent = "play music";
-    			add_location(span, file, 151, 6, 4392);
+    			add_location(span, file, 146, 6, 4182);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -1229,7 +1229,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(151:4) {#if !audio || audio.paused}",
+    		source: "(146:4) {#if !audio || audio.paused}",
     		ctx
     	});
 
@@ -1312,32 +1312,32 @@ var app = (function () {
     			create_component(help.$$.fragment);
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
-    			add_location(link0, file, 135, 2, 3887);
+    			add_location(link0, file, 130, 2, 3677);
     			attr_dev(link1, "rel", "preconnect");
     			attr_dev(link1, "href", "https://fonts.gstatic.com");
     			attr_dev(link1, "crossorigin", "");
-    			add_location(link1, file, 136, 2, 3951);
+    			add_location(link1, file, 131, 2, 3741);
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
-    			add_location(link2, file, 137, 2, 4024);
+    			add_location(link2, file, 132, 2, 3814);
     			attr_dev(div, "class", "background svelte-1nc4j47");
-    			add_location(div, file, 144, 2, 4173);
+    			add_location(div, file, 139, 2, 3963);
     			attr_dev(button, "class", "volume text-box svelte-1nc4j47");
-    			add_location(button, file, 146, 2, 4246);
+    			add_location(button, file, 141, 2, 4036);
     			if (!src_url_equal(source.src, source_src_value = "./song.mp3")) attr_dev(source, "src", source_src_value);
     			attr_dev(source, "type", "audio/mpeg");
-    			add_location(source, file, 157, 4, 4564);
+    			add_location(source, file, 152, 4, 4354);
     			audio_1.autoplay = true;
     			audio_1.loop = true;
-    			add_location(audio_1, file, 156, 2, 4520);
+    			add_location(audio_1, file, 151, 2, 4310);
     			if (!src_url_equal(img.src, img_src_value = "./assets/album_cover.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Mariah Carey merry Christmas II you album cover");
     			set_style(img, "opacity", /*audioVolume*/ ctx[2]);
     			set_style(img, "transform", "scale(" + /*audioVolume*/ ctx[2] * 1.2 + ")");
     			attr_dev(img, "class", "album svelte-1nc4j47");
-    			add_location(img, file, 161, 2, 4679);
+    			add_location(img, file, 156, 2, 4469);
     			attr_dev(main, "class", "svelte-1nc4j47");
-    			add_location(main, file, 143, 0, 4164);
+    			add_location(main, file, 138, 0, 3954);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1464,8 +1464,7 @@ var app = (function () {
     			for (let j = 0; j <= window.innerWidth / 50; j++) {
     				let img = document.createElement("img");
     				img.style.padding = "20px";
-    				img.style.position = "relative";
-    				img.style.zIndex = "-100";
+    				img.style.width = "30px";
     				img.style.height = "30px";
     				img.style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)";
     				img.src = "../assets/snowflake.svg";
@@ -1474,13 +1473,9 @@ var app = (function () {
     		} else {
     			for (let k = 0; k <= window.innerWidth / 50; k++) {
     				let img = document.createElement("img");
-    				img.classList.add("snowflake");
-    				img.classList.add("snowflake-2");
     				img.style.padding = "20px";
     				img.style.width = "30px";
     				img.style.height = "30px";
-    				img.style.position = "relative";
-    				img.style.zIndex = "-100";
     				img.style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)";
     				img.src = "../assets/snowflake.svg";
     				rows[i].append(img);
