@@ -76,7 +76,7 @@ If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need 
 
 ## Deploying to the web
 
-From the `main` branch
+From the `main` branch, after pushing most recent changes, run `./deploy.sh`
 
 ```
 # Build the application
