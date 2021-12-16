@@ -1320,21 +1320,23 @@ var app = (function () {
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
     			add_location(link2, file, 137, 2, 4024);
-    			attr_dev(div, "class", "background svelte-19lyur8");
+    			attr_dev(div, "class", "background svelte-1nc4j47");
     			add_location(div, file, 144, 2, 4173);
-    			attr_dev(button, "class", "volume text-box svelte-19lyur8");
+    			attr_dev(button, "class", "volume text-box svelte-1nc4j47");
     			add_location(button, file, 146, 2, 4246);
     			if (!src_url_equal(source.src, source_src_value = "./song.mp3")) attr_dev(source, "src", source_src_value);
     			attr_dev(source, "type", "audio/mpeg");
-    			add_location(source, file, 157, 4, 4559);
+    			add_location(source, file, 157, 4, 4564);
     			audio_1.autoplay = true;
+    			audio_1.loop = true;
     			add_location(audio_1, file, 156, 2, 4520);
     			if (!src_url_equal(img.src, img_src_value = "./assets/album_cover.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Mariah Carey merry Christmas II you album cover");
     			set_style(img, "opacity", /*audioVolume*/ ctx[2]);
-    			attr_dev(img, "class", "album svelte-19lyur8");
-    			add_location(img, file, 161, 2, 4674);
-    			attr_dev(main, "class", "svelte-19lyur8");
+    			set_style(img, "transform", "scale(" + /*audioVolume*/ ctx[2] * 1.2 + ")");
+    			attr_dev(img, "class", "album svelte-1nc4j47");
+    			add_location(img, file, 161, 2, 4679);
+    			attr_dev(main, "class", "svelte-1nc4j47");
     			add_location(main, file, 143, 0, 4164);
     		},
     		l: function claim(nodes) {
@@ -1389,6 +1391,10 @@ var app = (function () {
 
     			if (!current || dirty & /*audioVolume*/ 4) {
     				set_style(img, "opacity", /*audioVolume*/ ctx[2]);
+    			}
+
+    			if (!current || dirty & /*audioVolume*/ 4) {
+    				set_style(img, "transform", "scale(" + /*audioVolume*/ ctx[2] * 1.2 + ")");
     			}
 
     			const eve_changes = {};

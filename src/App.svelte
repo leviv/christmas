@@ -162,7 +162,7 @@
   <img
     src="./assets/album_cover.png"
     alt="Mariah Carey merry Christmas II you album cover"
-    style="opacity: {audioVolume};"
+    style="opacity: {audioVolume}; transform: scale({audioVolume * 1.2});"
     class="album"
   />
   <Eve {millisecondsUntilChristmas} />
@@ -182,6 +182,7 @@
 
   main {
     background-color: var(--main-bg-color);
+    cursor: url("../assets/hat.png"), auto;
     overflow: hidden;
     font-family: "Fuzzy Bubbles", cursive;
     font-weight: 400;
@@ -256,8 +257,8 @@
   .album {
     position: absolute;
     transform: rotate(-20deg) scale(1.15);
-    bottom: 0%;
-    right: 0%;
+    bottom: -10%;
+    right: -10%;
     z-index: -2;
   }
 </style>
