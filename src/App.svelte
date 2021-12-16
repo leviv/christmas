@@ -1,19 +1,19 @@
 <script>
   import { onMount } from "svelte";
+  import TimeLeft from "./TimeLeft.svelte";
+  import Eve from "./Eve.svelte";
+  import Help from "./Help.svelte";
 
-  let seasonsGreetings;
-  let eve;
   let audio;
   onMount(() => {
     // when the audio binding is ready set the volume
     audio.volume = 0;
-    console.log(audio.play);
   });
 
   /**
    * Number of MS until 12/25
    */
-  const millisecondsUntilChristmas = () => {
+  const getMillisecondsUntilChristmas = () => {
     const today = new Date();
     const christmas = new Date(today.getFullYear(), 11, 25);
 
@@ -50,46 +50,20 @@
     return today.getTime() - thanksgiving.getTime();
   };
 
+  let millisecondsUntilChristmas = getMillisecondsUntilChristmas();
   let audioVolume =
     millisecondsSinceThanksgiving() /
-    (millisecondsSinceThanksgiving() + millisecondsUntilChristmas());
-  const dayMilliseconds = 1000 * 60 * 60 * 24;
-  const hourMilliseconds = 1000 * 60 * 60;
-  const minuteMilliseconds = 1000 * 60;
-  let daysUntilChristmas,
-    hoursUntilChristmas,
-    minutesUntilChristmas,
-    secondsUntilChristmas;
+    (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
 
   /**
    * Get the number of days, hours, and seconds until xmas
    */
   const updateTimes = () => {
-    daysUntilChristmas = Math.floor(
-      millisecondsUntilChristmas() / dayMilliseconds
-    );
-    hoursUntilChristmas = Math.floor(
-      (millisecondsUntilChristmas() - dayMilliseconds * daysUntilChristmas) /
-        hourMilliseconds
-    );
-    minutesUntilChristmas = Math.floor(
-      (millisecondsUntilChristmas() -
-        dayMilliseconds * daysUntilChristmas -
-        hourMilliseconds * hoursUntilChristmas) /
-        minuteMilliseconds
-    );
-    secondsUntilChristmas = Math.floor(
-      (millisecondsUntilChristmas() -
-        dayMilliseconds * daysUntilChristmas -
-        hourMilliseconds * hoursUntilChristmas -
-        minuteMilliseconds * minutesUntilChristmas) /
-        1000
-    );
-
+    millisecondsUntilChristmas = getMillisecondsUntilChristmas();
     if (audio) {
       audioVolume =
         millisecondsSinceThanksgiving() /
-        (millisecondsSinceThanksgiving() + millisecondsUntilChristmas());
+        (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
       audio.volume = audioVolume;
     }
   };
@@ -98,28 +72,23 @@
   updateTimes();
   setInterval(() => updateTimes(), 1_000);
 
-  let mouseDistance = { x: 0, y: 0 };
-  const handleMousemove = (e) => {
-    mouseDistance.x =
-      e.clientX -
-      seasonsGreetings.offsetLeft -
-      seasonsGreetings.offsetWidth +
-      eve.offsetWidth / 2;
-    mouseDistance.y =
-      seasonsGreetings.offsetTop - e.clientY - eve.offsetHeight / 2;
+  //draw background snowflakes
+  window.onload = () => {
+    drawSnowflakes();
   };
 
-  //draw background snowflakes
-  window.onload = function () {
+  window.onresize = () => {
     drawSnowflakes();
   };
 
   function drawSnowflakes() {
-    let background = document.getElementsByClassName("background")[0];
+    const background = document.getElementsByClassName("background")[0];
+    background.textContent = "";
     let rows = [];
 
     for (let i = 0; i <= window.innerHeight / 50; i++) {
       let row = document.createElement("div");
+      row.style.position = "relative";
       row.style.width = "200vw";
       row.style.zIndex = "-100";
       if (i % 2 == 0) {
@@ -133,10 +102,12 @@
         for (let j = 0; j <= window.innerWidth / 50; j++) {
           let img = document.createElement("img");
           img.style.padding = "20px";
+          img.style.position = "relative";
+          img.style.zIndex = "-100";
           img.style.height = "30px";
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
-          img.src = "https://i.imgur.com/ftJAqny.png";
+          img.src = "../assets/snowflake.svg";
           rows[i].append(img);
         }
       } else {
@@ -147,10 +118,12 @@
           img.style.padding = "20px";
           img.style.width = "30px";
           img.style.height = "30px";
+          img.style.position = "relative";
+          img.style.zIndex = "-100";
 
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
-          img.src = "https://i.imgur.com/ftJAqny.png";
+          img.src = "../assets/snowflake.svg";
           rows[i].append(img);
         }
       }
@@ -168,20 +141,9 @@
   />
 </svelte:head>
 
-<svelte:body on:mousemove={handleMousemove} />
-
 <main>
   <div class="background" />
-  <h2 class="time-left text-box">
-    <span>{daysUntilChristmas}</span> day{daysUntilChristmas !== 1 ? "s" : ""}
-    <span>{hoursUntilChristmas}</span>
-    hour{hoursUntilChristmas !== 1 ? "s" : ""}
-    <span>{minutesUntilChristmas}</span>
-    minute{minutesUntilChristmas !== 1 ? "s" : ""} and
-    <span>{secondsUntilChristmas}</span>
-    second{secondsUntilChristmas !== 1 ? "s" : ""} until christmas!!
-  </h2>
-
+  <TimeLeft {millisecondsUntilChristmas} />
   <button
     class="volume text-box"
     on:click={() => (audio.paused ? audio.play() : audio.pause())}
@@ -203,34 +165,9 @@
     style="opacity: {audioVolume};"
     class="album"
   />
+  <Eve {millisecondsUntilChristmas} />
 
-  <div>
-    <h1 class="text-box seasons-greetings" bind:this={seasonsGreetings}>
-      merry christmas
-      <span style="position: relative; width: 0; height: 0">
-        {#each { length: Math.min(daysUntilChristmas, 50) } as _, i}
-          <span
-            class="eve"
-            style="bottom:{(mouseDistance.y / daysUntilChristmas) *
-              (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) *
-              (i + 1)}px"
-            bind:this={eve}
-          >
-            {#if i === daysUntilChristmas - 1}
-              eve!!!
-            {:else}
-              eve
-            {/if}
-          </span>
-        {/each}
-      </span>
-      <span>
-        {#if daysUntilChristmas > 0}
-          eve
-        {/if}
-      </span>
-    </h1>
-  </div>
+  <Help />
 </main>
 
 <style lang="scss">
@@ -249,11 +186,14 @@
     font-family: "Fuzzy Bubbles", cursive;
     font-weight: 400;
     padding: 60px;
-    max-width: 240px;
     margin: 0 auto;
     position: relative;
     height: calc(100vh - 120px);
     z-index: 1;
+
+    @media (max-width: 680px) {
+      padding: 60px 30px;
+    }
   }
 
   .background {
@@ -263,12 +203,13 @@
     top: 0px;
     width: 200vw;
     height: 200vh;
+    z-index: -999;
   }
 
-  .text-box {
+  :global(.text-box) {
     background-color: transparent;
     background-size: 100% 100%;
-    font-size: 1.2em;
+    font-size: 1.2em !important;
     padding: 14px 30px;
     border: none;
     display: block;
@@ -276,29 +217,29 @@
     width: -moz-fit-content;
     width: fit-content;
 
+    &:hover {
+      &:before {
+        top: 19px;
+        left: 19px;
+      }
+    }
+
     &:before {
       background-size: 100% 100%;
       content: " ";
       display: block;
+      height: 100%;
+      left: 15px;
       position: absolute;
       top: 15px;
-      left: 15px;
-      height: 100%;
+      transition: all 0.2s;
       width: 100%;
       z-index: -1;
     }
 
-    span {
+    :global(span) {
       color: var(--secondary-color);
       font-weight: 800;
-    }
-  }
-
-  .time-left {
-    background-image: url(../assets/border1.svg);
-
-    &:before {
-      background-image: url(../assets/border_transparent1.svg);
     }
   }
 
@@ -312,57 +253,11 @@
     }
   }
 
-  .seasons-greetings {
-    background-image: url(../assets/border3.svg);
-    position: absolute;
-    bottom: 60px;
-
-    &:before {
-      background-image: url(../assets/border_transparent3.svg);
-    }
-
-    /* .eve:first-child {
-      position: relative !important;
-    } */
-
-    .eve:nth-child(odd) {
-      color: var(--main-bg-color);
-      -webkit-text-stroke: 1.5px #000;
-    }
-
-    .eve:nth-child(even) {
-      -webkit-text-stroke: 1.5px var(--secondary-color);
-    }
-
-    .eve {
-      color: #fff;
-      font-weight: 700;
-      position: absolute;
-      user-select: none;
-    }
-  }
-
   .album {
     position: absolute;
     transform: rotate(-20deg) scale(1.15);
     bottom: 0%;
     right: 0%;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  h2 {
-    font-weight: 400;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+    z-index: -2;
   }
 </style>
