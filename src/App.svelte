@@ -54,8 +54,9 @@
   let audioVolume =
     millisecondsSinceThanksgiving() /
     (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
+  let albumTop = millisecondsSinceThanksgiving() * -10;
   const title = document.title;
-
+  let album_rotation = Math.floor(Math.random() * 360) + "deg)";
   /**
    * Get the number of days, hours, and seconds until xmas
    */
@@ -141,6 +142,7 @@
 <main>
   <div class="background" />
   <TimeLeft {millisecondsUntilChristmas} />
+
   <button
     class="volume text-box"
     on:click={() => (audio.paused ? audio.play() : audio.pause())}
@@ -159,7 +161,8 @@
   <img
     src="./assets/album_cover.png"
     alt="Mariah Carey merry Christmas II you album cover"
-    style="opacity: {audioVolume}; transform: scale({audioVolume * 1.2});"
+    style="transform: scale({audioVolume *
+      1.2}) rotate({album_rotation}; top:({albumTop};));"
     class="album"
   />
   <Eve {millisecondsUntilChristmas} />
@@ -183,10 +186,10 @@
     overflow: hidden;
     font-family: "Fuzzy Bubbles", cursive;
     font-weight: 400;
-    padding: 60px;
+    padding: 30px;
     margin: 0 auto;
     position: relative;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 60px);
     z-index: 1;
 
     @media (max-width: 680px) {
@@ -242,10 +245,9 @@
   }
 
   .volume {
-    background-image: url(../assets/border2.svg);
     cursor: pointer;
     margin-top: 35px;
-
+    background-image: url(../assets/border2.svg);
     &:before {
       background-image: url(../assets/border_transparent2.svg);
     }
@@ -253,9 +255,8 @@
 
   .album {
     position: absolute;
-    transform: rotate(-20deg) scale(1.15);
-    bottom: -10%;
-    right: -10%;
+    top: 0;
+    left: 0;
     z-index: -2;
   }
 </style>

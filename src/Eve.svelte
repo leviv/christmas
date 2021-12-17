@@ -51,7 +51,7 @@
 <style lang="scss">
   .seasons-greetings {
     background-image: url(../assets/border3.svg);
-    bottom: 60px;
+    bottom: 30px;
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
