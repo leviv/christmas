@@ -55,13 +55,40 @@
     return today.getTime() - thanksgiving.getTime();
   };
 
+  //map
+  function mapRange(value, a, b, c, d) {
+    // first map value from (a..b) to (0..1)
+    value = (value - a) / (b - a);
+    // then map it from (0..1) to (c..d) and return it
+    return c + value * (d - c);
+  }
+
+  //rando
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
   let millisecondsUntilChristmas = getMillisecondsUntilChristmas();
   let audioVolume =
     millisecondsSinceThanksgiving() /
     (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
-  let albumTop = millisecondsSinceThanksgiving() * -10;
+  console.log(millisecondsSinceThanksgiving());
   const title = document.title;
-  let album_rotation = Math.floor(Math.random() * 360) + "deg)";
+  let albumSize = mapRange(
+    millisecondsSinceThanksgiving(),
+    0,
+    2592000000,
+    10,
+    screen.width
+  );
+  console.log(screen.width);
+  let albumLeft = getRandomArbitrary(0, screen.width - albumSize);
+  let albumTop = getRandomArbitrary(0, screen.height - albumSize);
+
+  //millisecondsSinceThanksgiving() * screen.width;
+
+  let album_rotation = Math.floor(Math.random() * 360);
+  console.log(album_rotation);
   /**
    * Get the number of days, hours, and seconds until xmas
    */
@@ -165,10 +192,12 @@
   <img
     src="./assets/album_cover.png"
     alt="Mariah Carey merry Christmas II you album cover"
-    style="transform: scale({audioVolume *
-      1.2}) rotate({album_rotation}; top:({albumTop};));"
+    style="left:{albumLeft + 'px'}; top:{albumTop +
+      'px'}; transform: rotate({album_rotation + 'deg'}); width: {albumSize +
+      'px'}; "
     class="album"
   />
+
   <Eve {millisecondsUntilChristmas} />
 
   <Help />
@@ -197,7 +226,7 @@
     z-index: 1;
 
     @media (max-width: 680px) {
-      padding: 60px 30px;
+      padding: 30px;
     }
   }
 
@@ -259,8 +288,6 @@
 
   .album {
     position: absolute;
-    top: 0;
-    left: 0;
     z-index: -2;
   }
 </style>

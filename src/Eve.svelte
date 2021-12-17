@@ -61,7 +61,7 @@
     position: absolute;
 
     @media (max-width: 680px) {
-      bottom: 130px;
+      bottom: 120px;
     }
 
     &:before {
