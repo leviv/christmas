@@ -21,6 +21,11 @@
     if (today.getMonth() == 11 && today.getDate() > 25) {
       christmas.setFullYear(christmas.getFullYear() + 1);
     }
+
+    // It is Christmas!
+    if (today.getMonth() == 11 && today.getDate() === 25) {
+      return 0;
+    }
     return christmas.getTime() - today.getTime();
   };
 
@@ -74,7 +79,7 @@
   updateTimes();
   setInterval(() => updateTimes(), 1_000);
 
-  //draw background snowflakes
+  // Draw background snowflakes
   window.onload = () => {
     drawSnowflakes();
   };
@@ -117,7 +122,6 @@
           img.style.padding = "20px";
           img.style.width = "30px";
           img.style.height = "30px";
-
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
           img.src = "./assets/snowflake.svg";

@@ -4,21 +4,24 @@
   let seasonsGreetings;
   let eve;
 
-  let mouseDistance = { x: 0, y: 0 };
-  const handleMousemove = (e) => {
-    mouseDistance.x =
-      e.clientX -
-      seasonsGreetings.offsetLeft -
-      seasonsGreetings.offsetWidth +
-      eve.offsetWidth / 2;
-    mouseDistance.y =
-      seasonsGreetings.offsetTop - e.clientY - eve.offsetHeight / 2;
-  };
-
   const dayMilliseconds = 1000 * 60 * 60 * 24;
   $: daysUntilChristmas = Math.floor(
     millisecondsUntilChristmas / dayMilliseconds
   );
+  $: days = daysUntilChristmas;
+
+  let mouseDistance = { x: 0, y: 0 };
+  const handleMousemove = (e) => {
+    if (daysUntilChristmas > 0) {
+      mouseDistance.x =
+        e.clientX -
+        seasonsGreetings.offsetLeft -
+        seasonsGreetings.offsetWidth +
+        eve.offsetWidth / 2;
+      mouseDistance.y =
+        seasonsGreetings.offsetTop - e.clientY - eve.offsetHeight / 2;
+    }
+  };
 </script>
 
 <svelte:body on:mousemove={handleMousemove} />
@@ -26,14 +29,14 @@
 <h1 class="text-box seasons-greetings" bind:this={seasonsGreetings}>
   merry christmas
   <span style="position: relative; width: 0; height: 0">
-    {#each { length: Math.min(daysUntilChristmas, 50) } as _, i}
+    {#each { length: days } as _, i}
       <span
         class="eve"
-        style="bottom:{(mouseDistance.y / daysUntilChristmas) *
-          (i + 1)}px;left:{(mouseDistance.x / daysUntilChristmas) * (i + 1)}px"
+        style="bottom:{(mouseDistance.y / days + 1) *
+          (i + 1)}px;left:{(mouseDistance.x / days + 1) * (i + 1)}px"
         bind:this={eve}
       >
-        {#if i === daysUntilChristmas - 1}
+        {#if i === days}
           eve!!!
         {:else}
           eve
@@ -42,7 +45,7 @@
     {/each}
   </span>
   <span>
-    {#if daysUntilChristmas > 0}
+    {#if millisecondsUntilChristmas > 0}
       eve
     {/if}
   </span>
