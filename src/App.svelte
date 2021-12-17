@@ -79,7 +79,7 @@
     0,
     2592000000,
     10,
-    screen.width
+    screen.width * 0.7
   );
   console.log(screen.width);
   let albumLeft = getRandomArbitrary(0, screen.width - albumSize);
