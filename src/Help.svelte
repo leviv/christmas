@@ -19,11 +19,11 @@
 
   <div class="made-by text-box" style="display:{showIcon ? 'none' : 'block'};">
     Made by
-    <a href="https://leviv.me">
+    <a href="https://leviv.me" target="_blank">
       <img src="./assets/levi.png" alt="Levi" />
     </a>
     &
-    <a href="https://amandayeh.com/">
+    <a href="https://amandayeh.com/" target="_blank">
       <img src="./assets/amanda.png" alt="Amanda" />
     </a>
   </div>
