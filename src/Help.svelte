@@ -32,8 +32,8 @@
 <style lang="scss">
   .help {
     position: absolute;
-    bottom: 60px;
-    right: 60px;
+    bottom: 35px;
+    right: 30px;
 
     @media (max-width: 680px) {
       right: auto;
@@ -41,7 +41,7 @@
   }
 
   .made-by {
-    background-image: url(../assets/border2.svg);
+    background-image: url(../assets/border3.svg);
     font-size: 18px;
 
     img {
@@ -54,7 +54,7 @@
     }
 
     &:before {
-      background-image: url(../assets/border_transparent2.svg);
+      background-image: url(../assets/border_transparent3.svg);
     }
   }
 </style>

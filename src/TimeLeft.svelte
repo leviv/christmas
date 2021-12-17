@@ -39,11 +39,21 @@
 
 <style lang="scss">
   .time-left {
-    background-image: url(../assets/border1.svg);
+    background-image: url(../assets/border1-mobile.svg);
     font-weight: 400;
+  }
 
-    &:before {
-      background-image: url(../assets/border_transparent1.svg);
+  .time-left:before {
+    background-image: url(../assets/border1_transparent-mobile.svg);
+  }
+
+  @media (min-width: 500px) {
+    .time-left {
+      background-image: url(../assets/border1.svg);
+
+      &:before {
+        background-image: url(../assets/border_transparent1.svg);
+      }
     }
   }
 </style>
