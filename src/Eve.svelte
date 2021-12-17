@@ -60,7 +60,7 @@
     font-weight: 100;
     position: absolute;
 
-    @media (max-width: 680px) {
+    @media (max-width: 450px) {
       bottom: 120px;
     }
 

@@ -35,7 +35,7 @@
     bottom: 35px;
     right: 30px;
 
-    @media (max-width: 680px) {
+    @media (max-width: 450px) {
       right: auto;
     }
   }

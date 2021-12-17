@@ -692,7 +692,7 @@ var app = (function () {
     			span = element("span");
     			if_block.c();
     			t = space();
-    			attr_dev(span, "class", "eve svelte-1jhv0fb");
+    			attr_dev(span, "class", "eve svelte-34jwr4");
     			set_style(span, "bottom", (/*mouseDistance*/ ctx[3].y / /*days*/ ctx[4] + 1) * (/*i*/ ctx[12] + 1) + "px");
     			set_style(span, "left", (/*mouseDistance*/ ctx[3].x / /*days*/ ctx[4] + 1) * (/*i*/ ctx[12] + 1) + "px");
     			add_location(span, file$2, 32, 6, 868);
@@ -805,7 +805,7 @@ var app = (function () {
     			set_style(span0, "height", "0");
     			add_location(span0, file$2, 30, 2, 770);
     			add_location(span1, file$2, 46, 2, 1174);
-    			attr_dev(h1, "class", "text-box seasons-greetings svelte-1jhv0fb");
+    			attr_dev(h1, "class", "text-box seasons-greetings svelte-34jwr4");
     			add_location(h1, file$2, 28, 0, 681);
     		},
     		l: function claim(nodes) {
@@ -1048,20 +1048,20 @@ var app = (function () {
     			add_location(img0, file$1, 13, 2, 170);
     			if (!src_url_equal(img1.src, img1_src_value = "./assets/levi.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "Levi");
-    			attr_dev(img1, "class", "svelte-gn7i6s");
+    			attr_dev(img1, "class", "svelte-m9pxnt");
     			add_location(img1, file$1, 22, 6, 426);
     			attr_dev(a0, "href", "https://leviv.me");
     			add_location(a0, file$1, 21, 4, 392);
     			if (!src_url_equal(img2.src, img2_src_value = "./assets/amanda.png")) attr_dev(img2, "src", img2_src_value);
     			attr_dev(img2, "alt", "Amanda");
-    			attr_dev(img2, "class", "svelte-gn7i6s");
+    			attr_dev(img2, "class", "svelte-m9pxnt");
     			add_location(img2, file$1, 26, 6, 528);
     			attr_dev(a1, "href", "https://amandayeh.com/");
     			add_location(a1, file$1, 25, 4, 488);
-    			attr_dev(div0, "class", "made-by text-box svelte-gn7i6s");
+    			attr_dev(div0, "class", "made-by text-box svelte-m9pxnt");
     			set_style(div0, "display", /*showIcon*/ ctx[0] ? 'none' : 'block');
     			add_location(div0, file$1, 19, 2, 298);
-    			attr_dev(div1, "class", "help svelte-gn7i6s");
+    			attr_dev(div1, "class", "help svelte-m9pxnt");
     			add_location(div1, file$1, 4, 0, 43);
     		},
     		l: function claim(nodes) {
