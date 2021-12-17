@@ -1323,9 +1323,9 @@ var app = (function () {
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
     			add_location(link2, file, 166, 2, 4821);
-    			attr_dev(div, "class", "background svelte-gj2s1q");
+    			attr_dev(div, "class", "background svelte-crryo9");
     			add_location(div, file, 173, 2, 4970);
-    			attr_dev(button, "class", "volume text-box svelte-gj2s1q");
+    			attr_dev(button, "class", "volume text-box svelte-crryo9");
     			add_location(button, file, 176, 2, 5044);
     			if (!src_url_equal(source.src, source_src_value = "./song.mp3")) attr_dev(source, "src", source_src_value);
     			attr_dev(source, "type", "audio/mpeg");
@@ -1339,9 +1339,9 @@ var app = (function () {
     			set_style(img, "top", /*albumTop*/ ctx[5] + 'px');
     			set_style(img, "transform", "rotate(" + (/*album_rotation*/ ctx[6] + 'deg') + ")");
     			set_style(img, "width", /*albumSize*/ ctx[3] + 'px');
-    			attr_dev(img, "class", "album svelte-gj2s1q");
+    			attr_dev(img, "class", "album svelte-crryo9");
     			add_location(img, file, 191, 2, 5477);
-    			attr_dev(main, "class", "svelte-gj2s1q");
+    			attr_dev(main, "class", "svelte-crryo9");
     			add_location(main, file, 172, 0, 4961);
     		},
     		l: function claim(nodes) {

@@ -244,7 +244,7 @@
     background-color: transparent;
     background-size: 100% 100%;
     font-size: 1.2em !important;
-    padding: 14px 30px;
+    padding: 14px 20px;
     border: none;
     display: block;
     position: relative;
