@@ -59,6 +59,8 @@
     font-size: 4em;
     font-weight: 100;
     position: absolute;
+    padding-top: 16px;
+    padding-bottom: 12px;
 
     @media (max-width: 450px) {
       bottom: 120px;

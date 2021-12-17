@@ -692,7 +692,7 @@ var app = (function () {
     			span = element("span");
     			if_block.c();
     			t = space();
-    			attr_dev(span, "class", "eve svelte-34jwr4");
+    			attr_dev(span, "class", "eve svelte-gpka3w");
     			set_style(span, "bottom", (/*mouseDistance*/ ctx[3].y / /*days*/ ctx[4] + 1) * (/*i*/ ctx[12] + 1) + "px");
     			set_style(span, "left", (/*mouseDistance*/ ctx[3].x / /*days*/ ctx[4] + 1) * (/*i*/ ctx[12] + 1) + "px");
     			add_location(span, file$2, 32, 6, 868);
@@ -805,7 +805,7 @@ var app = (function () {
     			set_style(span0, "height", "0");
     			add_location(span0, file$2, 30, 2, 770);
     			add_location(span1, file$2, 46, 2, 1174);
-    			attr_dev(h1, "class", "text-box seasons-greetings svelte-34jwr4");
+    			attr_dev(h1, "class", "text-box seasons-greetings svelte-gpka3w");
     			add_location(h1, file$2, 28, 0, 681);
     		},
     		l: function claim(nodes) {
