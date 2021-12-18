@@ -72,23 +72,18 @@
   let audioVolume =
     millisecondsSinceThanksgiving() /
     (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
-  console.log(millisecondsSinceThanksgiving());
   const title = document.title;
   let albumSize = mapRange(
     millisecondsSinceThanksgiving(),
     0,
     2592000000,
     10,
-    screen.width * 0.7
+    window.innerWidth * 0.7
   );
-  console.log(screen.width);
-  let albumLeft = getRandomArbitrary(0, screen.width - albumSize);
-  let albumTop = getRandomArbitrary(0, screen.height - albumSize);
-
-  //millisecondsSinceThanksgiving() * screen.width;
+  let albumLeft = getRandomArbitrary(0, window.innerWidth - albumSize);
+  let albumTop = getRandomArbitrary(0, window.innerHeight - albumSize);
 
   let album_rotation = Math.floor(Math.random() * 360);
-  console.log(album_rotation);
   /**
    * Get the number of days, hours, and seconds until xmas
    */
