@@ -8,7 +8,8 @@
   $: daysUntilChristmas = Math.floor(
     millisecondsUntilChristmas / dayMilliseconds
   );
-  $: days = daysUntilChristmas;
+  // Set the max 'eves' to 150 so peoples devices don't struggle
+  $: days = Math.min(150, daysUntilChristmas);
 
   let mouseDistance = { x: 0, y: 0 };
   const handleMousemove = (e) => {
@@ -32,8 +33,8 @@
     {#each { length: days } as _, i}
       <span
         class="eve"
-        style="bottom:{(mouseDistance.y / days + 1) *
-          (i + 1)}px;left:{(mouseDistance.x / days + 1) * (i + 1)}px"
+        style="bottom:{(mouseDistance.y / days) *
+          (i + 1.0)}px;left:{(mouseDistance.x / days) * (i + 1.0)}px"
         bind:this={eve}
       >
         {#if i === days}

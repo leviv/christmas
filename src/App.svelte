@@ -3,6 +3,7 @@
   import TimeLeft from "./TimeLeft.svelte";
   import Eve from "./Eve.svelte";
   import Help from "./Help.svelte";
+  import Album from "./Album.svelte";
 
   let audio;
   onMount(() => {
@@ -42,7 +43,7 @@
   /**
    * Number of MS since the last thanksgiving
    */
-  const millisecondsSinceThanksgiving = () => {
+  const getMillisecondsSinceThanksgiving = () => {
     const today = new Date();
     let day = getThanksgivingDay(today.getFullYear());
     let thanksgiving = new Date(today.getFullYear(), 10, day);
@@ -55,44 +56,73 @@
     return today.getTime() - thanksgiving.getTime();
   };
 
-  //map
-  function mapRange(value, a, b, c, d) {
-    // first map value from (a..b) to (0..1)
-    value = (value - a) / (b - a);
-    // then map it from (0..1) to (c..d) and return it
-    return c + value * (d - c);
-  }
+  /**
+   * Audio volume increases linearly from 0-15% 12/26-thanksgiving
+   * Then 15-100% thanksgiving-12/25
+   */
+  const getAudioVolume = () => {
+    const SPLIT = 0.15;
+    const today = new Date();
+    let dayAfterChristmas = new Date(today.getFullYear(), 11, 26);
+    let day = getThanksgivingDay(today.getFullYear());
+    let thanksgiving = new Date(today.getFullYear(), 10, day);
 
-  //rando
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+    if (today > thanksgiving && today < dayAfterChristmas) {
+      return (
+        (getMillisecondsSinceThanksgiving() /
+          (getMillisecondsSinceThanksgiving() +
+            getMillisecondsUntilChristmas())) *
+          (1 - SPLIT) +
+        SPLIT
+      );
+    } else {
+      if (today > thanksgiving) {
+        day = getThanksgivingDay(today.getFullYear() + 1);
+        thanksgiving = new Date(today.getFullYear() + 1, 10, day);
+      }
+
+      if (today < dayAfterChristmas) {
+        dayAfterChristmas = new Date(today.getFullYear() - 1, 11, 26);
+      }
+
+      const millisecondsUntilThanksgiving =
+        thanksgiving.getTime() - today.getTime();
+      const millisecondsSinceChristmas =
+        today.getTime() - dayAfterChristmas.getTime();
+
+      return (
+        (millisecondsSinceChristmas /
+          (millisecondsSinceChristmas + millisecondsUntilThanksgiving)) *
+        SPLIT
+      );
+    }
+  };
+
+  /**
+   * Get the custom image cursor path depending on chrismas proximity
+   */
+  const getCursor = (volume) => {
+    if (volume > 0.5) {
+      return "../assets/hat.png";
+    } else if (volume > 0.12) {
+      return "../assets/close.png";
+    } else {
+      return "../assets/sad.png";
+    }
+  };
 
   let millisecondsUntilChristmas = getMillisecondsUntilChristmas();
-  let audioVolume =
-    millisecondsSinceThanksgiving() /
-    (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
+  let audioVolume = getAudioVolume();
   const title = document.title;
-  let albumSize = mapRange(
-    millisecondsSinceThanksgiving(),
-    0,
-    2592000000,
-    10,
-    window.innerWidth * 0.7
-  );
-  let albumLeft = getRandomArbitrary(0, window.innerWidth - albumSize);
-  let albumTop = getRandomArbitrary(0, window.innerHeight - albumSize);
+  let cursorImage = getCursor(audioVolume);
 
-  let album_rotation = Math.floor(Math.random() * 360);
   /**
    * Get the number of days, hours, and seconds until xmas
    */
   const updateTimes = () => {
     millisecondsUntilChristmas = getMillisecondsUntilChristmas();
     if (audio) {
-      audioVolume =
-        millisecondsSinceThanksgiving() /
-        (millisecondsSinceThanksgiving() + millisecondsUntilChristmas);
+      audioVolume = getAudioVolume();
       audio.volume = audioVolume;
     }
     document.title = `${Math.round(audioVolume * 10000) / 100}% - ${title}`;
@@ -165,7 +195,7 @@
   />
 </svelte:head>
 
-<main>
+<main style="--cursor-image: url({cursorImage})">
   <div class="background" />
   <TimeLeft {millisecondsUntilChristmas} />
 
@@ -184,17 +214,8 @@
     Your browser does not support the audio element.
   </audio>
 
-  <img
-    src="./assets/album_cover.png"
-    alt="Mariah Carey merry Christmas II you album cover"
-    style="left:{albumLeft + 'px'}; top:{albumTop +
-      'px'}; transform: rotate({album_rotation + 'deg'}); width: {albumSize +
-      'px'}; "
-    class="album"
-  />
-
+  <Album {audioVolume} />
   <Eve {millisecondsUntilChristmas} />
-
   <Help />
 </main>
 
@@ -210,7 +231,7 @@
 
   main {
     background-color: var(--main-bg-color);
-    cursor: url("../assets/hat.png"), auto;
+    cursor: var(--cursor-image), auto;
     overflow: hidden;
     font-family: "Fuzzy Bubbles", cursive;
     font-weight: 400;
@@ -279,10 +300,5 @@
     &:before {
       background-image: url(../assets/border_transparent2.svg);
     }
-  }
-
-  .album {
-    position: absolute;
-    z-index: -2;
   }
 </style>
