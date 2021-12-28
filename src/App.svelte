@@ -144,7 +144,7 @@
 </svelte:head>
 
 <main style="--cursor-image: url({cursorImage})">
-  <Snowflakes />
+  <Snowflakes {audioVolume} />
   <TimeLeft {millisecondsUntilChristmas} />
 
   <button

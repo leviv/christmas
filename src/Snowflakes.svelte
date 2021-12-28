@@ -1,4 +1,9 @@
 <script>
+  export let audioVolume;
+
+  const snowflakePath =
+    audioVolume < 0.15 ? "./assets/snow-light.svg" : "./assets/snowflake.svg";
+
   // Draw background snowflakes
   window.onload = () => {
     drawSnowflakes();
@@ -33,7 +38,7 @@
           img.style.height = "30px";
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
-          img.src = "./assets/snowflake.svg";
+          img.src = snowflakePath;
           rows[i].append(img);
         }
       } else {
@@ -44,7 +49,7 @@
           img.style.height = "30px";
           img.style.transform =
             "rotate(" + Math.floor(Math.random() * 360) + "deg)";
-          img.src = "./assets/snowflake.svg";
+          img.src = snowflakePath;
           rows[i].append(img);
         }
       }
