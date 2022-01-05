@@ -4,7 +4,7 @@ All I want for christmas is you by Mariah Carey but the volume is controlled by 
 
 If you have any suggestions, feel free to open an issue or pull request!
 
-If you're intrested in viewing our liscense for looking this song, please refer to [this document](http://bitly.com/98K8eH).
+If you're intrested in viewing our liscense for using this song, please refer to [this document](http://bitly.com/98K8eH).
 
 ## Get started
 
