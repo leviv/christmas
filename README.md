@@ -11,7 +11,7 @@ If you're intrested in viewing our liscense for using this song, please refer to
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd christmas
 npm install
 ```
 

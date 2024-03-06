@@ -32,80 +32,31 @@
   };
 
   /**
-   * Helper method to get the day thanksgiving falls on.
-   * Fourth thursday of November
-   */
-  const getThanksgivingDay = (year) => {
-    const octoberFirst = new Date(year, 10, 1);
-    const dayOfWeek = octoberFirst.getDay();
-    return 22 + ((11 - dayOfWeek) % 7);
-  };
-
-  /**
-   * Number of MS since the last thanksgiving
-   */
-  const getMillisecondsSinceThanksgiving = () => {
-    const today = new Date();
-    let day = getThanksgivingDay(today.getFullYear());
-    let thanksgiving = new Date(today.getFullYear(), 10, day);
-
-    if (today.getTime() > thanksgiving.getTime()) {
-      day = getThanksgivingDay(today.getFullYear() - 1);
-      thanksgiving = new Date(today.getFullYear(), 10, day);
-    }
-
-    return today.getTime() - thanksgiving.getTime();
-  };
-
-  /**
-   * Audio volume increases linearly from 0-15% 12/26-thanksgiving
-   * Then 15-100% thanksgiving-12/25
+   * Audio volume increases linearly until christmas
    */
   const getAudioVolume = () => {
-    const SPLIT = 0.15;
     const today = new Date();
     let dayAfterChristmas = new Date(today.getFullYear(), 11, 26);
-    let day = getThanksgivingDay(today.getFullYear());
-    let thanksgiving = new Date(today.getFullYear(), 10, day);
-
-    if (today > thanksgiving && today < dayAfterChristmas) {
-      return (
-        (getMillisecondsSinceThanksgiving() /
-          (getMillisecondsSinceThanksgiving() +
-            getMillisecondsUntilChristmas())) *
-          (1 - SPLIT) +
-        SPLIT
-      );
-    } else {
-      if (today > thanksgiving) {
-        day = getThanksgivingDay(today.getFullYear() + 1);
-        thanksgiving = new Date(today.getFullYear() + 1, 10, day);
-      }
-
-      if (today < dayAfterChristmas) {
-        dayAfterChristmas = new Date(today.getFullYear() - 1, 11, 26);
-      }
-
-      const millisecondsUntilThanksgiving =
-        thanksgiving.getTime() - today.getTime();
-      const millisecondsSinceChristmas =
-        today.getTime() - dayAfterChristmas.getTime();
-
-      return (
-        (millisecondsSinceChristmas /
-          (millisecondsSinceChristmas + millisecondsUntilThanksgiving)) *
-        SPLIT
-      );
+    if (today < dayAfterChristmas) {
+      dayAfterChristmas = new Date(today.getFullYear() - 1, 11, 26);
     }
+    const millisecondsSinceChristmas =
+      today.getTime() - dayAfterChristmas.getTime();
+    const millisecondsUntilChristmas = getMillisecondsUntilChristmas();
+
+    return (
+      millisecondsSinceChristmas /
+      (millisecondsSinceChristmas + millisecondsUntilChristmas)
+    );
   };
 
   /**
    * Get the custom image cursor path depending on chrismas proximity
    */
   const getCursor = (volume) => {
-    if (volume > 0.5) {
+    if (volume > 0.75) {
       return "../assets/hat.png";
-    } else if (volume > 0.12) {
+    } else if (volume > 0.5) {
       return "../assets/close.png";
     } else {
       return "../assets/sad.png";

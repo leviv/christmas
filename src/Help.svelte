@@ -19,7 +19,7 @@
 
   <div class="made-by text-box" style="display:{showIcon ? 'none' : 'block'};">
     Made by
-    <a href="https://leviv.me" target="_blank">
+    <a href="https://leviv.cool" target="_blank">
       <img src="./assets/levi.png" alt="Levi" />
     </a>
     &

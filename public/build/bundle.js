@@ -1050,17 +1050,17 @@ var app = (function () {
     			if (!src_url_equal(img1.src, img1_src_value = "./assets/levi.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "Levi");
     			attr_dev(img1, "class", "svelte-m9pxnt");
-    			add_location(img1, file$3, 22, 6, 442);
-    			attr_dev(a0, "href", "https://leviv.me");
+    			add_location(img1, file$3, 22, 6, 444);
+    			attr_dev(a0, "href", "https://leviv.cool");
     			attr_dev(a0, "target", "_blank");
     			add_location(a0, file$3, 21, 4, 392);
     			if (!src_url_equal(img2.src, img2_src_value = "./assets/amanda.png")) attr_dev(img2, "src", img2_src_value);
     			attr_dev(img2, "alt", "Amanda");
     			attr_dev(img2, "class", "svelte-m9pxnt");
-    			add_location(img2, file$3, 26, 6, 560);
+    			add_location(img2, file$3, 26, 6, 562);
     			attr_dev(a1, "href", "https://amandayeh.com/");
     			attr_dev(a1, "target", "_blank");
-    			add_location(a1, file$3, 25, 4, 504);
+    			add_location(a1, file$3, 25, 4, 506);
     			attr_dev(div0, "class", "made-by text-box svelte-m9pxnt");
     			set_style(div0, "display", /*showIcon*/ ctx[0] ? 'none' : 'block');
     			add_location(div0, file$3, 19, 2, 298);
@@ -1299,7 +1299,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "background svelte-eo8b4s");
-    			add_location(div, file$1, 60, 0, 1697);
+    			add_location(div, file$1, 60, 0, 1696);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1331,7 +1331,7 @@ var app = (function () {
     	validate_slots('Snowflakes', slots, []);
     	let { audioVolume } = $$props;
 
-    	const snowflakePath = audioVolume < 0.15
+    	const snowflakePath = audioVolume < 0.5
     	? "./assets/snow-light.svg"
     	: "./assets/snowflake.svg";
 
@@ -1450,7 +1450,7 @@ var app = (function () {
     const { document: document_1 } = globals;
     const file = "src/App.svelte";
 
-    // (156:4) {:else}
+    // (107:4) {:else}
     function create_else_block(ctx) {
     	let t0;
     	let span;
@@ -1464,7 +1464,7 @@ var app = (function () {
     			span = element("span");
     			t1 = text(t1_value);
     			t2 = text("%");
-    			add_location(span, file, 156, 14, 4481);
+    			add_location(span, file, 107, 14, 2994);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1485,14 +1485,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(156:4) {:else}",
+    		source: "(107:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:4) {#if !audio || audio.paused}
+    // (105:4) {#if !audio || audio.paused}
     function create_if_block(ctx) {
     	let span;
 
@@ -1500,7 +1500,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			span.textContent = "play music";
-    			add_location(span, file, 154, 6, 4431);
+    			add_location(span, file, 105, 6, 2944);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -1515,7 +1515,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(154:4) {#if !audio || audio.paused}",
+    		source: "(105:4) {#if !audio || audio.paused}",
     		ctx
     	});
 
@@ -1607,25 +1607,25 @@ var app = (function () {
     			create_component(help.$$.fragment);
     			attr_dev(link0, "rel", "preconnect");
     			attr_dev(link0, "href", "https://fonts.googleapis.com");
-    			add_location(link0, file, 137, 2, 3880);
+    			add_location(link0, file, 88, 2, 2393);
     			attr_dev(link1, "rel", "preconnect");
     			attr_dev(link1, "href", "https://fonts.gstatic.com");
     			attr_dev(link1, "crossorigin", "");
-    			add_location(link1, file, 138, 2, 3944);
+    			add_location(link1, file, 89, 2, 2457);
     			attr_dev(link2, "href", "https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
     			attr_dev(link2, "rel", "stylesheet");
-    			add_location(link2, file, 139, 2, 4017);
+    			add_location(link2, file, 90, 2, 2530);
     			attr_dev(button, "class", "volume text-box svelte-tw3422");
-    			add_location(button, file, 149, 2, 4285);
+    			add_location(button, file, 100, 2, 2798);
     			if (!src_url_equal(source.src, source_src_value = "./song.mp3")) attr_dev(source, "src", source_src_value);
     			attr_dev(source, "type", "audio/mpeg");
-    			add_location(source, file, 160, 4, 4603);
+    			add_location(source, file, 111, 4, 3116);
     			audio_1.autoplay = true;
     			audio_1.loop = true;
-    			add_location(audio_1, file, 159, 2, 4559);
+    			add_location(audio_1, file, 110, 2, 3072);
     			set_style(main, "--cursor-image", "url(" + /*cursorImage*/ ctx[3] + ")");
     			attr_dev(main, "class", "svelte-tw3422");
-    			add_location(main, file, 145, 0, 4157);
+    			add_location(main, file, 96, 0, 2670);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1764,67 +1764,28 @@ var app = (function () {
     	};
 
     	/**
-     * Helper method to get the day thanksgiving falls on.
-     * Fourth thursday of November
-     */
-    	const getThanksgivingDay = year => {
-    		const octoberFirst = new Date(year, 10, 1);
-    		const dayOfWeek = octoberFirst.getDay();
-    		return 22 + (11 - dayOfWeek) % 7;
-    	};
-
-    	/**
-     * Number of MS since the last thanksgiving
-     */
-    	const getMillisecondsSinceThanksgiving = () => {
-    		const today = new Date();
-    		let day = getThanksgivingDay(today.getFullYear());
-    		let thanksgiving = new Date(today.getFullYear(), 10, day);
-
-    		if (today.getTime() > thanksgiving.getTime()) {
-    			day = getThanksgivingDay(today.getFullYear() - 1);
-    			thanksgiving = new Date(today.getFullYear(), 10, day);
-    		}
-
-    		return today.getTime() - thanksgiving.getTime();
-    	};
-
-    	/**
-     * Audio volume increases linearly from 0-15% 12/26-thanksgiving
-     * Then 15-100% thanksgiving-12/25
+     * Audio volume increases linearly until christmas
      */
     	const getAudioVolume = () => {
-    		const SPLIT = 0.15;
     		const today = new Date();
     		let dayAfterChristmas = new Date(today.getFullYear(), 11, 26);
-    		let day = getThanksgivingDay(today.getFullYear());
-    		let thanksgiving = new Date(today.getFullYear(), 10, day);
 
-    		if (today > thanksgiving && today < dayAfterChristmas) {
-    			return getMillisecondsSinceThanksgiving() / (getMillisecondsSinceThanksgiving() + getMillisecondsUntilChristmas()) * (1 - SPLIT) + SPLIT;
-    		} else {
-    			if (today > thanksgiving) {
-    				day = getThanksgivingDay(today.getFullYear() + 1);
-    				thanksgiving = new Date(today.getFullYear() + 1, 10, day);
-    			}
-
-    			if (today < dayAfterChristmas) {
-    				dayAfterChristmas = new Date(today.getFullYear() - 1, 11, 26);
-    			}
-
-    			const millisecondsUntilThanksgiving = thanksgiving.getTime() - today.getTime();
-    			const millisecondsSinceChristmas = today.getTime() - dayAfterChristmas.getTime();
-    			return millisecondsSinceChristmas / (millisecondsSinceChristmas + millisecondsUntilThanksgiving) * SPLIT;
+    		if (today < dayAfterChristmas) {
+    			dayAfterChristmas = new Date(today.getFullYear() - 1, 11, 26);
     		}
+
+    		const millisecondsSinceChristmas = today.getTime() - dayAfterChristmas.getTime();
+    		const millisecondsUntilChristmas = getMillisecondsUntilChristmas();
+    		return millisecondsSinceChristmas / (millisecondsSinceChristmas + millisecondsUntilChristmas);
     	};
 
     	/**
      * Get the custom image cursor path depending on chrismas proximity
      */
     	const getCursor = volume => {
-    		if (volume > 0.5) {
+    		if (volume > 0.75) {
     			return "../assets/hat.png";
-    		} else if (volume > 0.12) {
+    		} else if (volume > 0.5) {
     			return "../assets/close.png";
     		} else {
     			return "../assets/sad.png";
@@ -1878,8 +1839,6 @@ var app = (function () {
     		Snowflakes,
     		audio,
     		getMillisecondsUntilChristmas,
-    		getThanksgivingDay,
-    		getMillisecondsSinceThanksgiving,
     		getAudioVolume,
     		getCursor,
     		millisecondsUntilChristmas,
