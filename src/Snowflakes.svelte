@@ -2,7 +2,7 @@
   export let audioVolume;
 
   const snowflakePath =
-    audioVolume < 0.5 ? "./assets/snow-light.svg" : "./assets/snowflake.svg";
+    audioVolume < 0.15 ? "./assets/snow-light.svg" : "./assets/snowflake.svg";
 
   // Draw background snowflakes
   window.onload = () => {
